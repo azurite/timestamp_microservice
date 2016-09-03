@@ -9,26 +9,18 @@ var parseDate = function(d) {
     if(typeof d !== "string") {
         return false;
     }
-    
     if(!isNaN(Number(d)) && (new Date(Number(d))).toString() !== "Invalid Date") {
         return new Date(Number(d));
     }
-    
     if((new Date(d)).toString() !== "Invalid Date") {
         return new Date(d);
     }
-    
     return false;
 };
 
 var format = function(d) {
     var months = ["January", "February", "March", "Apirl", "May", "June", "July", "August", "September", "October", "November", "December"];
-    
-    var year = d.getFullYear();
-    var month = months[d.getMonth()];
-    var day = zeroFill(d.getDay());
-    
-    return month + " " + day + ", " + year;
+    return months[d.getMonth()] + " " + zeroFill(d.getDay()) + ", " + d.getFullYear();
 };
 
 app.get("/", (req, res) => {
@@ -48,6 +40,6 @@ app.get("/:date", (req, res) => {
     res.end("Invalid Date Parameter");
 });
 
-app.listen(8080, () => {
+app.listen(process.env.PORT || 8080, () => {
     console.log("App listening on port 8080");
 });
