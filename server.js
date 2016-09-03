@@ -32,7 +32,7 @@ app.get("/:date", (req, res) => {
     console.log(date);
     if(date) {
         res.json({
-            unix: req.params.date,
+            unix: date.getTime(),
             natural: format(date)
         });
         res.end();
@@ -40,6 +40,6 @@ app.get("/:date", (req, res) => {
     res.end("Invalid Date Parameter");
 });
 
-app.listen(process.env.PORT || 8080, () => {
-    console.log("App listening on port 8080");
+var listener = app.listen(process.env.PORT || 8080, () => {
+    console.log("App listening on port: ", listener.address().port);
 });
