@@ -20,7 +20,7 @@ var parseDate = function(d) {
 
 var format = function(d) {
     var months = ["January", "February", "March", "Apirl", "May", "June", "July", "August", "September", "October", "November", "December"];
-    return months[d.getMonth()] + " " + zeroFill(d.getDay()) + ", " + d.getFullYear();
+    return months[d.getMonth()] + " " + zeroFill(d.getDate()) + ", " + d.getFullYear();
 };
 
 app.get("/", (req, res) => {
