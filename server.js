@@ -29,15 +29,16 @@ app.get("/", (req, res) => {
 
 app.get("/:date", (req, res) => {
     var date = parseDate(req.params.date);
-    console.log(date);
+    
     if(date) {
         res.json({
             unix: date.getTime(),
             natural: format(date)
         });
-        res.end();
     }
-    res.end("Invalid Date Parameter");
+    else {
+        res.json({ error: "Invalid date parameter" });
+    }
 });
 
 var listener = app.listen(process.env.PORT || 8080, () => {
