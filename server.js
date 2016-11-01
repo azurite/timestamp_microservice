@@ -41,6 +41,11 @@ app.get("/:date", (req, res) => {
     }
 });
 
+app.use((req, res) => {
+    res.status(404);
+    res.json({ status: 404, message: "This isn't the page you are looking for" });
+});
+
 var listener = app.listen(process.env.PORT || 8080, () => {
     console.log("App listening on port: ", listener.address().port);
 });
